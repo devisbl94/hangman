@@ -1,16 +1,16 @@
 export default {
 	"words": {
-		"level1": [
+		1: [
 			"avion",
 			"arbol",
 			"vaso"
 		],
-		"level2": [
+		2: [
 			"rinoceronte",
 			"leopardo",
 			"cuadrado"
 		],
-		"level3": [
+		3: [
 			"paralelepipedo",
 			"esternocleidomaztoideo",
 			"supercalifragilisticoespialidoso"

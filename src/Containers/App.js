@@ -12,7 +12,12 @@ class App extends Component {
 		lettersUsed: [],
 		points: 0,
 		level: 1,
+		wordNumber: 1,
+		word: '',
 		oportunities: 7
+	}
+	componentWillUnmount() {
+		let splittedWord = [...words[this.state.level][this.state.wordNumber].split("")];
 	}
 	componentDidMount() {
 		alphabet.forEach(letter => {
@@ -24,9 +29,13 @@ class App extends Component {
 			    	lettersUsed.push(letter);
 			    	this.setState({lettersUsed: lettersUsed});
 			    	console.log(`You've pressed letter ${letter}`);
-			    	// left from here
+			    	// left in here
 			    	let indices = [];
-
+					let idx = splittedWord.indexOf(letter);
+					while (idx != -1) {
+						indices.push(idx);
+						idx = splittedWord.indexOf(letter, idx + 1);
+					}
 			    }
 			});
 		})
