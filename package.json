@@ -2,6 +2,7 @@
   "name": "hangman",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://devisbl94.github.io/hangman",
   "dependencies": {
     "mousetrap": "^1.6.1",
     "radium": "^0.22.1",
