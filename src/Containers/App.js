@@ -17,10 +17,9 @@ import './App.css';
 class App extends Component {
 	state = {
 		lettersUsed: [],
-		points: 0,
 		level: 1,
 		unknownWord: '',
-		wordLevel: '',
+		word: '',
 		wordNumber: 0,
 		oportunities: 7
 	}
@@ -39,20 +38,18 @@ class App extends Component {
 			    	this.setState({lettersUsed: lettersUsed});
 					console.log(`You've pressed letter ${letter}`);
 
-					let splittedWord = [...this.state.wordLevel];
-					let index = splittedWord.indexOf(letter);
+					let indexOf = this.state.word.indexOf(letter);
 					
-					if (index === -1) {
+					if (indexOf === -1) {
 						this.setState({ oportunities: this.state.oportunities - 1 });
 						if (this.state.oportunities < 0) {
 							this.gameOver();
-							this.getWord(this.state.levelNumber, this.state.wordNumber);
 						}
 					} else {
-						this.getWord(this.state.levelNumber, this.state.wordNumber, letter);
-						if (isEqual(this.state.wordLevel, this.state.unknownWord)) {
+						this.getWord(this.state.level, this.state.wordNumber, letter);
+						if (isEqual(this.state.word, this.state.unknownWord)) {
 							this.goNext();
-							this.getWord(this.state.levelNumber, this.state.wordNumber);
+							this.getWord(this.state.level, this.state.wordNumber);
 						}
 					}
 			    }
@@ -65,6 +62,10 @@ class App extends Component {
 		})
 	}
 	goNext = () => {
+		if (this.state.level === 3 && this.state.wordNumber === 2) {
+			this.gameOver();
+			return;
+		}
 		this.state.wordNumber === 2 ? this.setState({ 
 			wordNumber: 0, 
 			level: this.state.level + 1 
@@ -76,36 +77,36 @@ class App extends Component {
 		alert("GAME OVER");
 		this.setState({
 			lettersUsed: [],
-			points: 0,
 			level: 1,
 			unknownWord: '',
-			wordLevel: '',
+			word: '',
 			wordNumber: 0,
 			oportunities: 7
 		});
+		this.getWord(this.state.level, this.state.wordNumber);
 	}
-	getWord = (levelNumber, wordNumber, letter = null) => {
+	getWord = (level, wordNumber, letter = null) => {
 		if (letter === null) {
-			let wordLevel = [...words[this.state.level][this.state.wordNumber].split("")];
-			let unknownWord = wordLevel.map( (value, index) => {
-				return index === 0 || index ===wordLevel.length - 1 ? value : '_';
+			let word = [...words[this.state.level][this.state.wordNumber].split("")];
+			let unknownWord = word.map( (value, index) => {
+				return index === 0 || index === word.length - 1 ? value : '_';
 			});
 			this.setState({
-				wordLevel: wordLevel,
+				word: word,
 				unknownWord: unknownWord,
 				lettersUsed: []
 			});
 			return;
 		}
 
-		let wordLevel = [...this.state.wordLevel];
+		let word = [...this.state.word];
 		let unknownWord = [...this.state.unknownWord];
 		let indices = [];
-		let idx = wordLevel.indexOf(letter);
+		let idx = word.indexOf(letter);
 
 		while (idx !== -1) {
 			indices.push(idx);
-			idx = wordLevel.indexOf(letter, idx + 1);
+			idx = word.indexOf(letter, idx + 1);
 		}
 
 		indices.forEach((value) => {
