@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://devisbl94.github.io/hangman",
   "dependencies": {
+    "gh-pages": "^1.1.0",
     "mousetrap": "^1.6.1",
     "radium": "^0.22.1",
     "react": "^16.2.0",
