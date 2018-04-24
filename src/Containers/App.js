@@ -4,7 +4,6 @@ import * as Mousetrap from 'mousetrap';
 import { includes, isEqual } from 'lodash';
 
 // Components
-import Hangman from './../Components/Hangman/Hangman';
 import LevelIndicator from './../Components/LevelIndicator/LevelIndicator';
 import Points from './../Components/Points/Points';
 import WordField from './../Components/WordField/WordField';
