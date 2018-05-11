@@ -118,13 +118,13 @@ class App extends Component {
 
 	render() {
 		return (
-		  <div className="App">
-			<p>Level: {this.state.level}</p>
-			<p>Oportunities: {this.state.oportunities}</p>
-		  	<p>Letters used: {this.state.lettersUsed}</p>
-			<WordField
-				word={this.state.unknownWord} />
-		  </div>
+			<div className="App">
+				<p>Level: {this.state.level}</p>
+				<p>Oportunities: {this.state.oportunities}</p>
+				<p>Letters used: {this.state.lettersUsed}</p>
+				<WordField
+					word={this.state.unknownWord} />
+			</div>
 		);
 	}
 }
